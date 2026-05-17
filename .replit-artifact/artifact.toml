@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "IYED AUTOWASH"
+version = "1.0.0"
+id = "artifacts/iyed-autowash"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24383
+
+[services.development]
+run = "pnpm --filter @workspace/iyed-autowash run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/iyed-autowash", "run", "build" ]
+publicDir = "artifacts/iyed-autowash/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24383"
+BASE_PATH = "/"
