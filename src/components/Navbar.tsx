@@ -34,7 +34,7 @@ export function Navbar() {
       <button
         data-testid="button-theme-toggle"
         onClick={toggleTheme}
-        className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all"
+        className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-all"
         aria-label="Toggle theme"
       >
         {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
@@ -43,7 +43,7 @@ export function Navbar() {
       <button
         data-testid="button-language-toggle"
         onClick={() => setLang(lang === "en" ? "ar" : "en")}
-        className="h-9 px-3 rounded-full bg-white/5 border border-white/10 flex items-center gap-1.5 text-white/70 hover:text-white hover:bg-white/10 transition-all text-sm font-medium"
+        className="h-8 sm:h-9 px-2.5 sm:px-3 rounded-full bg-white/5 border border-white/10 flex items-center gap-1.5 text-white/70 hover:text-white hover:bg-white/10 transition-all text-sm font-medium"
         aria-label="Toggle language"
       >
         <Globe className="w-3.5 h-3.5" />
@@ -55,21 +55,23 @@ export function Navbar() {
   return (
     <nav
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-4 shadow-sm" : "bg-transparent py-6"
+        isScrolled
+          ? "bg-background/85 backdrop-blur-sm border-b border-white/10 py-3 sm:py-4 shadow-sm"
+          : "bg-background/10 backdrop-blur-sm border-b border-white/10 py-3 sm:py-4"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 md:px-8">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <Link
             href="/"
-            className="flex items-center gap-3 group rounded-[28px] bg-white/10 border border-white/15 py-3 px-4 sm:px-5 hover:bg-white/15 transition-all duration-300"
+            className="flex items-center gap-2 sm:gap-3 group rounded-[28px] bg-white/8 border border-white/15 py-2.5 px-3 sm:px-4 hover:bg-white/12 transition-all duration-300"
           >
             <img
               src={logoImg}
               alt="IYED AUTOWASH"
-              className="h-12 w-12 sm:h-16 sm:w-16 rounded-[28px] object-cover shadow-[0_20px_50px_rgba(15,23,42,0.22)]"
+              className="h-10 w-10 max-[390px]:h-9 max-[390px]:w-9 sm:h-12 sm:w-12 rounded-[28px] object-cover shadow-[0_18px_40px_rgba(15,23,42,0.22)]"
             />
-            <span className="text-sm sm:text-base font-semibold tracking-tight text-white leading-none">
+            <span className="text-sm sm:text-base font-semibold tracking-tight text-white leading-tight">
               IYED<span className="text-primary">AUTOWASH</span>
             </span>
           </Link>
@@ -94,7 +96,7 @@ export function Navbar() {
           </div>
 
           {/* Mobile: controls + hamburger */}
-          <div className="md:hidden flex flex-wrap items-center justify-end gap-2 sm:gap-3">
+          <div className="md:hidden flex flex-wrap items-center justify-end gap-1.5 sm:gap-2">
             {controlButtons}
             <button
               className="text-white p-2 rounded-full bg-white/10 border border-white/10 hover:bg-white/15 transition-all duration-300"
