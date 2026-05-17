@@ -18,7 +18,7 @@ export function Services() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,102,255,0.05),transparent_50%)]" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-4">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <motion.span
             initial={{ opacity: 0, y: 20 }}
@@ -33,7 +33,7 @@ export function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-5xl font-display font-bold text-white mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-white mb-6"
           >
             {t.services.title}
           </motion.h2>
@@ -42,13 +42,13 @@ export function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-white/60 text-lg"
+            className="text-white/60 text-base sm:text-lg leading-8"
           >
             {t.services.subtitle}
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {t.services.items.map((service, index) => {
             const Icon = icons[index % icons.length];
             return (
@@ -58,18 +58,18 @@ export function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 overflow-hidden"
+                className="group relative p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all duration-300 overflow-hidden min-h-65"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
+                <div className="absolute inset-0 bg-linear-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
                 <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-7 h-7 text-primary" />
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-primary/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
                   </div>
-                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold text-white mb-3 group-hover:text-primary transition-colors">
                     {service.title}
                   </h3>
-                  <p className="text-white/60 leading-relaxed">
+                  <p className="text-sm sm:text-base text-white/60 leading-relaxed">
                     {service.description}
                   </p>
                 </div>

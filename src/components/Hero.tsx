@@ -7,9 +7,8 @@ export function Hero() {
   const { t, isRTL } = useLanguage();
 
   return (
-    <section className="hero-section relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background */}
-      <div className="absolute inset-0 z-0">
+    <section className="hero-section relative min-h-[calc(100vh-5rem)] lg:min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80"
           alt="Luxury car"
@@ -20,20 +19,18 @@ export function Hero() {
         <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]"
+          className="hidden md:block absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px]"
         />
         <motion.div
           animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#00d4ff]/10 rounded-full blur-[150px]"
+          className="hidden md:block absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-[#00d4ff]/10 rounded-full blur-[150px]"
         />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 pt-16">
-        <div className={`flex items-center gap-12 ${isRTL ? "flex-row-reverse" : "flex-row"}`}>
-
-          {/* Text Content */}
-          <div className={`flex-1 min-w-0 ${isRTL ? "text-right" : "text-left"}`}>
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.35fr_0.9fr] items-center gap-12 lg:gap-20">
+          <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -50,14 +47,16 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className={`font-display font-bold text-white mb-5 leading-[1.15] ${
                 isRTL
-                  ? "text-4xl md:text-5xl lg:text-6xl"
-                  : "text-5xl md:text-7xl lg:text-7xl"
+                  ? "text-3xl sm:text-4xl md:text-5xl lg:text-6xl"
+                  : "text-3xl sm:text-4xl md:text-5xl lg:text-7xl"
               }`}
             >
-              {t.hero.headline1}
-              <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#00d4ff]">
-                {t.hero.headline2}
+              <span className="block max-w-full sm:max-w-2xl">
+                {t.hero.headline1}
+                <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-[#00d4ff]">
+                  {t.hero.headline2}
+                </span>
               </span>
             </motion.h1>
 
@@ -65,7 +64,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-base md:text-lg text-white/60 mb-10 max-w-xl leading-relaxed"
+              className="text-sm sm:text-base md:text-lg text-white/60 mb-10 max-w-full sm:max-w-xl leading-7"
             >
               {t.hero.sub}
             </motion.p>
@@ -74,12 +73,12 @@ export function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className={`flex flex-col sm:flex-row items-start gap-4 mb-14 ${isRTL ? "sm:flex-row-reverse" : ""}`}
+              className={`flex flex-col sm:flex-row items-stretch gap-3 mb-12 ${isRTL ? "sm:flex-row-reverse" : ""}`}
             >
               <Button
                 size="lg"
                 data-testid="button-book-now-hero"
-                className="w-full sm:w-auto text-lg h-14 px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_30px_rgba(0,102,255,0.4)] hover:shadow-[0_0_50px_rgba(0,102,255,0.6)] transition-all"
+                className="w-full sm:w-auto text-base sm:text-lg h-12 sm:h-14 px-5 sm:px-8 bg-primary hover:bg-primary/90 text-primary-foreground shadow-[0_0_24px_rgba(0,102,255,0.35)] hover:shadow-[0_0_40px_rgba(0,102,255,0.5)] transition-all"
                 onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
                 {t.hero.bookNow}
@@ -87,19 +86,18 @@ export function Hero() {
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto text-lg h-14 px-8 bg-white/5 border-white/10 text-white hover:bg-white/10"
+                className="w-full sm:w-auto text-base sm:text-lg h-12 sm:h-14 px-5 sm:px-8 bg-white/5 border-white/10 text-white hover:bg-white/10"
                 onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
               >
                 {t.hero.ourServices}
               </Button>
             </motion.div>
 
-            {/* Stats */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1, delay: 1 }}
-              className={`grid grid-cols-3 gap-4 border-t border-white/10 pt-8 max-w-xl ${isRTL ? "text-right" : "text-left"}`}
+              className={`grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-white/10 pt-8 max-w-xl ${isRTL ? "text-right" : "text-left"}`}
             >
               <div className="flex flex-col gap-1">
                 <div className={`flex items-center gap-2 text-2xl md:text-3xl font-display font-bold text-white ${isRTL ? "flex-row-reverse justify-end" : ""}`}>
@@ -125,7 +123,6 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Floating Image — only on desktop, switches side based on language */}
           <motion.div
             animate={{ y: [-10, 10, -10] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -138,11 +135,9 @@ export function Hero() {
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-black/40 to-transparent" />
           </motion.div>
-
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}

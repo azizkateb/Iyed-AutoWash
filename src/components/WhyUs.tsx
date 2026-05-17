@@ -7,8 +7,8 @@ const icons = [MapPin, Leaf, Wrench, Zap, DollarSign, HeartHandshake];
 export function WhyUs() {
   const { t } = useLanguage();
   return (
-    <section id="why-us" className="py-24 relative bg-black/50">
-      <div className="container mx-auto px-4">
+    <section id="why-us" className="py-20 sm:py-24 relative bg-black/50">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="flex flex-col lg:flex-row gap-16 items-center">
           <div className="lg:w-1/3 flex flex-col gap-6">
             <div>
@@ -25,7 +25,7 @@ export function WhyUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="text-4xl md:text-5xl font-display font-bold text-white mb-6"
+                className="text-2xl sm:text-3xl md:text-5xl font-display font-bold text-white mb-6"
               >
                 {t.whyUs.title}
               </motion.h2>
@@ -34,7 +34,7 @@ export function WhyUs() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="text-white/60 text-lg"
+                className="text-white/60 text-sm sm:text-base leading-7"
               >
                 {t.whyUs.subtitle}
               </motion.p>
@@ -45,7 +45,7 @@ export function WhyUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,102,255,0.1)] mt-4"
+              className="rounded-[1.75rem] overflow-hidden border border-white/10 shadow-[0_0_30px_rgba(0,102,255,0.1)] mt-4"
             >
               <img
                 src="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?auto=format&fit=crop&w=600&q=80"
@@ -66,14 +66,14 @@ export function WhyUs() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="flex gap-4 p-6 rounded-2xl bg-white/[0.02] border border-white/5"
+                  className="flex gap-3 sm:gap-4 p-4 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/5 items-start"
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
-                    <Icon className="w-5 h-5 text-primary" />
+                  <div className="flex-shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+                    <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-white mb-2">{feature.title}</h4>
-                    <p className="text-sm text-white/50">{feature.desc}</p>
+                    <h4 className="text-base sm:text-lg font-bold text-white mb-2">{feature.title}</h4>
+                    <p className="text-sm text-white/50 leading-6">{feature.desc}</p>
                   </div>
                 </motion.div>
               );

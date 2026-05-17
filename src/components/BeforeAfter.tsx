@@ -1,12 +1,21 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 export function BeforeAfter() {
   const { t } = useLanguage();
   const [sliderPosition, setSliderPosition] = useState(50);
+  const [useMotion, setUseMotion] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const update = () => setUseMotion(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
@@ -48,8 +57,8 @@ export function BeforeAfter() {
 
         <motion.div 
           ref={containerRef}
-          style={{ y }}
-          className="relative max-w-5xl mx-auto aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden cursor-ew-resize border border-white/10"
+          style={useMotion ? { y, touchAction: "pan-y" } : { touchAction: "pan-y" }}
+          className="relative max-w-full mx-auto aspect-4/3 sm:aspect-4/3 md:aspect-video min-h-65 sm:min-h-75 rounded-2xl overflow-hidden border border-white/10"
           onMouseMove={handleDrag}
           onTouchMove={handleDrag}
         >
@@ -85,10 +94,10 @@ export function BeforeAfter() {
             className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]"
             style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
           >
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg">
-              <div className="flex gap-1">
-                <div className="w-1 h-3 bg-primary rounded-full" />
-                <div className="w-1 h-3 bg-primary rounded-full" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+              <div className="flex gap-1 sm:gap-2">
+                <div className="w-1 h-3 sm:h-4 bg-primary rounded-full" />
+                <div className="w-1 h-3 sm:h-4 bg-primary rounded-full" />
               </div>
             </div>
           </div>

@@ -10,9 +10,9 @@ import { useLanguage } from "@/contexts/LanguageContext";
 export function Contact() {
   const { t } = useLanguage();
   return (
-    <section id="contact" className="py-24 relative">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+    <section id="contact" className="py-20 sm:py-24 relative">
+      <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
           
           {/* Contact Info */}
           <div>
@@ -20,7 +20,7 @@ export function Contact() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-display font-bold text-white mb-6"
+              className="text-2xl sm:text-3xl md:text-4xl font-display font-bold text-white mb-6"
             >
               {t.contact.title}
             </motion.h2>
@@ -29,7 +29,7 @@ export function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-white/60 text-lg mb-12"
+              className="text-white/60 text-sm sm:text-base mb-10 leading-7 max-w-full sm:max-w-xl"
             >
               {t.contact.subtitle}
             </motion.p>
@@ -68,7 +68,7 @@ export function Contact() {
               </motion.div>
             </div>
 
-            <div className="flex gap-4">
+            <div className="flex flex-wrap items-center gap-3">
               <a href="#" className="w-10 h-10 rounded-full bg-slate-100/80 dark:bg-white/10 border border-slate-300/60 dark:border-white/10 flex items-center justify-center text-slate-950 dark:text-white transition-all duration-300 hover:bg-[#25D366] dark:hover:bg-[#25D366] hover:text-white hover:shadow-[0_0_20px_rgba(37,211,102,0.35)] hover:-translate-y-0.5">
                 <FaWhatsapp size={20} />
               </a>
@@ -89,7 +89,7 @@ export function Contact() {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-lg"
+            className="p-6 sm:p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-lg"
           >
             <form className="flex flex-col gap-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -124,10 +124,10 @@ export function Contact() {
 
               <div className="flex flex-col gap-2">
                 <label className="text-sm font-medium text-white/80">{t.contact.form.message}</label>
-                <Textarea placeholder={t.contact.form.messagePlaceholder} className="bg-black/20 border-white/10 text-white min-h-[100px]" />
+                <Textarea placeholder={t.contact.form.messagePlaceholder} className="bg-black/20 border-white/10 text-white min-h-[120px]" />
               </div>
 
-              <Button size="lg" className="w-full mt-4 bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Button size="lg" className="w-full mt-4 py-4 bg-primary hover:bg-primary/90 text-primary-foreground">
                 <Send className="w-4 h-4 mr-2" />
                 {t.contact.form.submit}
               </Button>

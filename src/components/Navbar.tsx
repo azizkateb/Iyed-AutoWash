@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -53,22 +54,22 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 ${isRTL ? "right-0 left-0" : "left-0 right-0"} z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-4" : "bg-transparent py-6"
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-background/80 backdrop-blur-md border-b border-white/5 py-4 shadow-sm" : "bg-transparent py-6"
       }`}
     >
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="flex items-center justify-between">
+      <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <Link
             href="/"
-            className="flex items-center gap-3 group rounded-[28px] bg-white/10 border border-white/15 p-3 hover:bg-white/15 transition-all duration-300"
+            className="flex items-center gap-3 group rounded-[28px] bg-white/10 border border-white/15 py-3 px-4 sm:px-5 hover:bg-white/15 transition-all duration-300"
           >
             <img
               src={logoImg}
               alt="IYED AUTOWASH"
-              className="h-20 w-20 rounded-[28px] object-cover shadow-[0_20px_50px_rgba(15,23,42,0.22)]"
+              className="h-12 w-12 sm:h-16 sm:w-16 rounded-[28px] object-cover shadow-[0_20px_50px_rgba(15,23,42,0.22)]"
             />
-            <span className="text-lg font-semibold tracking-tight text-white">
+            <span className="text-sm sm:text-base font-semibold tracking-tight text-white leading-none">
               IYED<span className="text-primary">AUTOWASH</span>
             </span>
           </Link>
@@ -93,9 +94,14 @@ export function Navbar() {
           </div>
 
           {/* Mobile: controls + hamburger */}
-          <div className="md:hidden flex items-center gap-2">
+          <div className="md:hidden flex flex-wrap items-center justify-end gap-2 sm:gap-3">
             {controlButtons}
-            <button className="text-white p-2" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+            <button
+              className="text-white p-2 rounded-full bg-white/10 border border-white/10 hover:bg-white/15 transition-all duration-300"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-navigation"
+            >
               {isMobileMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
@@ -104,19 +110,37 @@ export function Navbar() {
 
       {/* Mobile Nav */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-lg border-b border-white/5 p-4 flex flex-col gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: -12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.24, ease: "easeOut" }}
+          id="mobile-navigation"
+          className="md:hidden absolute top-full inset-x-0 bg-background/95 backdrop-blur-3xl border-t border-white/10 p-4 sm:p-5 flex flex-col gap-3 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto rounded-b-3xl z-40"
+          style={{ WebkitOverflowScrolling: "touch" }}
+        >
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-sm font-medium text-white/70 hover:text-white p-2" onClick={() => setIsMobileMenuOpen(false)}>
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-base font-medium text-white/80 hover:text-white rounded-2xl px-3 py-3 transition-colors"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
               {link.name}
             </a>
           ))}
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-3">
+            {controlButtons}
+          </div>
           <Button
-            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-            onClick={() => { setIsMobileMenuOpen(false); document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" }); }}
+            className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4"
+            onClick={() => {
+              setIsMobileMenuOpen(false);
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             {t.nav.bookNow}
           </Button>
-        </div>
+        </motion.div>
       )}
     </nav>
   );
